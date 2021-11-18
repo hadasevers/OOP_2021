@@ -6,6 +6,7 @@ In the first stage - it is based on sorting the calls for calls up and for calls
     The sorting will be into two lists, with each list the size of the number of floors that the building it has receives as input.
     Each cell in the list will contain the calls from the same source floor, with cell 0 in the list being defined the minimum floor of the building.
     When at the time of sorting the calls to the lists, there will be two counters that will count the number of calls up and the number of calls down.
+
 In the second stage, the elevators will be sorted into a new list, according to their speeds.
     When the sorting will be proportional to the amount of calls in the same direction. That is, the list will not be sorted by the speed of the elevators but relatively.
     If, for example, calls upwards constitute 2/3 of the calls, then the fastest elevator will receive the list in the upward direction,
@@ -14,6 +15,7 @@ In the second stage, the elevators will be sorted into a new list, according to 
     All this is done within the "building" department. That is, internal action.
     Also, consider what is the average number of calls each elevator should receive. Of course each elevator is given a larger allocation,
     for anomalies, and because the numbers are not completely complete.
+
 Finally we will insert the elevators for calls.
     We will start with a direction for which there are more calls. He will start his placement with the elevator at the top of the list. That is the fastest elevator.
     The placement will be done by the "threading" method, that is, at the beginning the elevator will deputative go to the minimum floor (if it is towards the top, and the maximum floor if it is down)
@@ -25,6 +27,7 @@ Finally we will insert the elevators for calls.
     If the elevator has not yet reached the required number of calls - it will repeat the operation - that is, it will go to the minimum floor, etc.
     If the elevator is full - then we will move on to the next elevator, and so on until the list of the same direction is completed.
     Of course, because of the calculation made, the elevator that will start the list of the other direction will be the second fastest elevator.
+
 Choosing the fastest elevator for the first elevator to be filled in a certain direction is intentional.
     Because the elevator that begins to fill at the end of the building has the potential for extensive traffic - between the minimum floor and the maximum floor of the building.
     In addition, as the elevator fills up, some floors are emptied of calls, so it turns out that the first elevator that fills up for any direction will have more calls than average, and therefore, it is better to be the fastest.
