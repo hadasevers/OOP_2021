@@ -1,6 +1,7 @@
 import json
 import math
 import random
+from time import time
 from copy import copy, deepcopy
 from typing import List
 from GraphInterface import GraphInterface
@@ -8,8 +9,7 @@ from GraphAlgoInterface import GraphAlgoInterface
 from DiGraph import DiGraph
 from Munche_A_2022.Ex3.src.my_node import my_node
 from my_node import my_node
-import pygame
-from pygame import *
+from pygame import font, color,Color, draw, rect, Rect, display, MOUSEBUTTONDOWN, QUIT
 from button_menu import *
 
 
@@ -161,9 +161,9 @@ class GraphAlgo(GraphAlgoInterface):
                 # if there is node that not view - this graph not connected
                 if maxi == 1000000:
                     return None, float('inf')
-                if maxi < mini:
-                     mini = maxi
-                     ans = n
+            if maxi < mini:
+                mini = maxi
+                ans = n
         current_id = ans.get_id()
         return current_id, mini
 
@@ -457,12 +457,29 @@ class GraphAlgo(GraphAlgoInterface):
 
 
 
-"""
+
 
 def main():
+    s = time()
     g = GraphAlgo()
-    g.load_from_json("../data/A2.json")
-    g.plot_graph()
+    g.load_from_json("../data/1000Nodes.json")
+    e = time()
+    print(e-s)
+    s = time()
+    g.save_to_json("nnn.json")
+    e = time()
+    print(e-s)
+    s = time()
+    print(g.shortest_path(25, 682))
+    e = time()
+    print(e - s)
+    s = time()
+    #print(g.centerPoint())
+    e = time()
+    print(e - s)
+    g.load_from_json("../data/A1.json")
+    print(g.centerPoint())
+    #g.plot_graph()
 
 
 
@@ -470,4 +487,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-"""
