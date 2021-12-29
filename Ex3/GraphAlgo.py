@@ -303,7 +303,9 @@ class GraphAlgo(GraphAlgoInterface):
 
                 # Calculation to find the point of intersection between the rib and the vertex - to find the tip of the arrow
                 def x2point(xs, ys, xd, yd, d):
-                    m = (ys - yd) / (xs - xd)
+                    if (ys - yd) or (xs - xd) == 0:
+                        m = 0
+                    else: m = (ys - yd) / (xs - xd)
                     n = yd - (m * xd)
                     a = (1 + m * m)
                     b = (-2 * xd) + (2 * n * m) - (2 * yd * m)
@@ -457,8 +459,7 @@ class GraphAlgo(GraphAlgoInterface):
 
 
 
-
-
+"""
 def main():
     s = time()
     g = GraphAlgo()
@@ -474,11 +475,11 @@ def main():
     e = time()
     print(e - s)
     s = time()
-    #print(g.centerPoint())
+    print(g.TSP([18, 75, 950, 68]))
     e = time()
     print(e - s)
-    g.load_from_json("../data/A1.json")
-    print(g.centerPoint())
+
+
     #g.plot_graph()
 
 
@@ -487,3 +488,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+"""
