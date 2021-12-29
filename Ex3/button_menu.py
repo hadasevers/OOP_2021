@@ -1,18 +1,14 @@
 import pygame
-from pygame import *
+from pygame import font, color,Color, draw, rect, Rect
 from pygame import gfxdraw
 
-from DiGraph import DiGraph
-from GraphAlgo import GraphAlgo
+
 
 font.init()
 Font = font.SysFont('Arial', 15, bold=False)
 clock = pygame.time.Clock()
 
-class Ex3:
-    def __init__(self, alg: GraphAlgo):
-        global algo
-        algo = alg
+
 
 
 class Button:
@@ -23,7 +19,6 @@ class Button:
         self.pos = pos
         self.color = Color(43, 43, 43)
         self.rect = Rect(self.pos, self.size)
-        self.graph = None
 
     def draw(self, screen):
         title_srf = Font.render(self.title, True, Color(43, 43, 43))
