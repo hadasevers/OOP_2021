@@ -340,21 +340,33 @@ class GraphAlgo(GraphAlgoInterface):
                         dest_y = my_scale(dest.pos.get('y'), y=True)
                         # draw the line
                         pygame.draw.line(screen, Color(61, 72, 126), (src_x, src_y), (dest_x, dest_y), width=1)
-                        x1, x2, m, n = x2point(src_x, src_y, dest_x, dest_y, 10)
-                        # draw the arrow
-                        if dest_x > src_x:
-                            x = min(x1, x2)
-                        else: x = max(x1, x2)
-                        y = m * x + n
-                        x1, x2, m, n = x2point(src_x, src_y, x, y, radius)
-                        if dest_x > src_x:
-                            x = min(x1, x2)
-                        else: x = max(x1, x2)
-                        y = m * x + n
-                        x3, x4, m, n = x1point(x, y, 5, m)
-                        y3 = m * x3 + n
-                        y4 = m * x4 + n
-                        pygame.draw.polygon(screen, Color(61, 72, 126), [(dest_x,dest_y), (x3,y3), (x4,y4)])
+                        if dest_x == src_x:
+                            if dest_y < src_y:
+                                pygame.draw.polygon(screen, Color(61, 72, 126), [(dest_x, dest_y+7), (dest_x+5, dest_y+17), (dest_x-5, dest_y+17)])
+                            else:
+                                pygame.draw.polygon(screen, Color(61, 72, 126), [(dest_x, dest_y - 7), (dest_x + 5, dest_y - 17),(dest_x - 5, dest_y - 17)])
+                        elif dest_y == src_y:
+                            if dest_x < src_x:
+                                 pygame.draw.polygon(screen, Color(61, 72, 126), [(dest_x+7, dest_y), (dest_x +17, dest_y+5),(dest_x+17, dest_y-5)])
+                            else:
+                                pygame.draw.polygon(screen, Color(61, 72, 126), [(dest_x-7, dest_y), (dest_x -17, dest_y+5),(dest_x-17, dest_y-5)])
+
+                        else:
+                            x1, x2, m, n = x2point(src_x, src_y, dest_x, dest_y, radius)
+                            # draw the arrow
+                            if dest_x > src_x:
+                                xs = min(x1, x2)
+                            else: xs = max(x1, x2)
+                            ys = m * xs + n
+                            x1, x2, m, n = x2point(src_x, src_y, xs, ys, 10)
+                            if dest_x > src_x:
+                                x = min(x1, x2)
+                            else: x = max(x1, x2)
+                            y = m * x + n
+                            x3, x4, m, n = x1point(x, y, 5, m)
+                            y3 = m * x3 + n
+                            y4 = m * x4 + n
+                            pygame.draw.polygon(screen, Color(61, 72, 126), [(xs,ys), (x3,y3), (x4,y4)])
 
 
                 # draw nodes
@@ -454,6 +466,10 @@ class GraphAlgo(GraphAlgoInterface):
                                         self.get_graph().remove_edge(int(src), int(dest))
                                     clicked = False
 
+"""
+if __name__ == '__main__':
+    g = GraphAlgo()
+    g.load_from_json("../data/A0.json")
+    g.plot_graph()
 
-
-
+"""
